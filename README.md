@@ -152,8 +152,9 @@ chmod +x /home/acidvegas/.weechat/renew
 
 ### Servers
 ```
+/server add 2f30        irc.2f30.org/6697 -ssl
 /server add blackhat	breaking.technology/6697 -ssl
-/server add efnet		efnet.port80.se/6697,irc.choopa.net/6697 -ssl
+/server add efnet		irc.choopa.net/6697 -ssl
 /server add freenode	irc.freenode.com/6697 -ssl
 /server add ircstorm	irc.ircstorm.net/6699 -ssl
 /server add oftc		irc.oftc.net/6697 -ssl
@@ -161,12 +162,17 @@ chmod +x /home/acidvegas/.weechat/renew
 /server add silph		irc.silph.co/6697 -ssl
 /server add supernets	irc.supernets.org/6697 -ssl
 /server add unreal		irc.unrealircd.org/6697 -ssl
+/server add wormnet     wormnet1.team17.com
 /server add wtfux		irc.wtfux.org/6697 -ssl
 
+/set irc.server.2f30.autojoin       #2f30
 /set irc.server.efnet.autojoin		#2600,#efnetnews,#exchange,#irc30,#lrh
 /set irc.server.freenode.autojoin	#archlinux,#ircv3,#music-theory,#python,#raspberrypi,#weechat
 /set irc.server.sandnet.autojoin	#arab
 /set irc.server.silph.autojoin		#ramen
+/set irc.server.wormnet.autojoin    #anythinggoes
+/set irc.server.wormnet.password    ELSILRACLIHP
+/set irc.server.wormnet.realname    "48 0 US 3.7.2.1"
 ```
 
 ### Services
