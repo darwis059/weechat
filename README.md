@@ -60,6 +60,8 @@ chmod +x /home/acidvegas/.weechat/renew
 /set irc.ctcp.time								""
 /set irc.ctcp.userinfo							""
 /set irc.ctcp.version							""
+/set irc.look.buffer_switch_autojoin            off
+/set irc.look.buffer_switch_join                off
 /set irc.look.ctcp_time_format					""
 /set irc.look.display_ctcp_blocked				off
 /set irc.look.display_ctcp_reply				off
