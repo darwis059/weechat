@@ -60,8 +60,8 @@ chmod +x /home/acidvegas/.weechat/renew
 /set irc.ctcp.time								""
 /set irc.ctcp.userinfo							""
 /set irc.ctcp.version							""
-/set irc.look.buffer_switch_autojoin            off
-/set irc.look.buffer_switch_join                off
+/set irc.look.buffer_switch_autojoin			off
+/set irc.look.buffer_switch_join				off
 /set irc.look.ctcp_time_format					""
 /set irc.look.display_ctcp_blocked				off
 /set irc.look.display_ctcp_reply				off
@@ -72,6 +72,7 @@ chmod +x /home/acidvegas/.weechat/renew
 /set irc.look.join_auto_add_chantype			on
 /set irc.look.server_buffer						independent
 /set irc.look.smart_filter						off
+/set irc.look.temporary_servers					on
 /set irc.network.ban_mask_default				"*!*@$host"
 /set irc.server_default.anti_flood_prio_high	0
 /set irc.server_default.anti_flood_prio_low		0 
@@ -128,9 +129,9 @@ chmod +x /home/acidvegas/.weechat/renew
 /set weechat.look.buffer_time_format			" %H:%M"
 /set weechat.look.confirm_quit					on
 /set weechat.look.day_change					off
-/set weechat.look.highlight						acidvegas,supernets
+/set weechat.look.highlight						"acidvegas,supernets,super nets"
 /set weechat.look.item_buffer_filter			"•"
-/set weechat.look.mouse							off
+/set weechat.look.mouse							on
 /set weechat.look.prefix_align_max				15
 /set weechat.look.prefix_join					"▬▬▶"
 /set weechat.look.prefix_quit					"◀▬▬"
@@ -154,7 +155,7 @@ chmod +x /home/acidvegas/.weechat/renew
 
 ### Servers
 ```
-/server add 2f30        irc.2f30.org/6697 -ssl
+/server add 2f30		irc.2f30.org/6697 -ssl
 /server add blackhat	breaking.technology/6697 -ssl
 /server add efnet		irc.choopa.net/6697 -ssl
 /server add freenode	irc.freenode.com/6697 -ssl
@@ -164,17 +165,17 @@ chmod +x /home/acidvegas/.weechat/renew
 /server add silph		irc.silph.co/6697 -ssl
 /server add supernets	irc.supernets.org/6697 -ssl
 /server add unreal		irc.unrealircd.org/6697 -ssl
-/server add wormnet     wormnet1.team17.com
+/server add wormnet		wormnet1.team17.com
 /server add wtfux		irc.wtfux.org/6697 -ssl
 
-/set irc.server.2f30.autojoin       #2f30
+/set irc.server.2f30.autojoin		#2f30
 /set irc.server.efnet.autojoin		#2600,#efnetnews,#exchange,#irc30,#lrh
 /set irc.server.freenode.autojoin	#archlinux,#ircv3,#music-theory,#python,#raspberrypi,#weechat
 /set irc.server.sandnet.autojoin	#arab
 /set irc.server.silph.autojoin		#ramen
-/set irc.server.wormnet.autojoin    #anythinggoes
-/set irc.server.wormnet.password    ELSILRACLIHP
-/set irc.server.wormnet.realname    "48 0 US 3.7.2.1"
+/set irc.server.wormnet.autojoin	#anythinggoes
+/set irc.server.wormnet.password	ELSILRACLIHP
+/set irc.server.wormnet.realname	"48 0 US 3.7.2.1"
 ```
 
 ### Services

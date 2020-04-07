@@ -7,7 +7,7 @@ nicks = list()
 
 def timer_cb(data, remaining_calls):
 	split = data.split('[split]')
-	weechat.command(split[0], nicks[0] + ': ' + split[1])
+	weechat.command(split[0], split[1].replace('%n',nicks[0]))
 	nicks.pop(0)
 	return weechat.WEECHAT_RC_OK
 
