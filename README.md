@@ -18,7 +18,7 @@
 weechat -P "alias,buflist,charset,exec,fifo,fset,irc,perl,python,relay,script,trigger" -r "/set weechat.plugin.autoload alias,buflist,charset,exec,fifo,fset,irc,perl,python,relay,script,trigger;/save;/quit"
 rm $HOME/.weechat/weechat.log && chmod 700 $HOME/.weechat && mkdir $HOME/.weechat/ssl
 git clone --depth 1 https://github.com/acidvegas/weechat.git $HOME/weechat
-mv $HOME/weechat/alias.conf $HOME/.weechat/alias.conf && mv $HOME/weechat/scripts/perl/*.pl && $HOME/.weechat/perl/autoload/ && mv $HOME/weechat/scripts/python/*.py $HOME/.weechat/python/autoload/
+mv $HOME/weechat/alias.conf $HOME/.weechat/alias.conf && mv $HOME/weechat/scripts/perl/*.pl $HOME/.weechat/perl/autoload/ && mv $HOME/weechat/scripts/python/*.py $HOME/.weechat/python/autoload/
 mkdir $HOME/.weechat/logs
 openssl req -x509 -new -newkey rsa:4096 -sha256 -days 3650 -out $HOME/.weechat/ssl/cert.pem -keyout $HOME/.weechat/ssl/cert.pem
 chmod 400 $HOME/.weechat/ssl/cert.pem
@@ -33,7 +33,7 @@ echo -e "[Unit]\nDescription=cerbot renewal timer\n\n[Timer]\nOnCalendar=0/12:00
 systemctl enable certbot.timer && systemctl start certbot.timer
 
 echo "#!/bin/bash" > /home/acidvegas/.weechat/renew
-echo "cat /etc/letsencrypt/live/chat.acid.vegas/fullchain.pem cat /etc/letsencrypt/live/chat.acid.vegas/privkey.pem > /home/acidvegas/.weechat/ssl/relay.pem" >> /home/acidvegas/.weechat/renew
+echo "cat /etc/letsencrypt/live/chat.acid.vegas/fullchain.pem /etc/letsencrypt/live/chat.acid.vegas/privkey.pem > /home/acidvegas/.weechat/ssl/relay.pem" >> /home/acidvegas/.weechat/renew
 echo "chown -R acidvegas:acidvegas /home/acidvegas/.weechat/ssl/relay.pem && chmod 400 /home/acidvegas/.weechat/ssl/relay.pem" >> /home/acidvegas/.weechat/renew
 echo "printf '%b' '*/relay sslcertkey\n' > /home/acidvegas/.weechat/weechat_fifo" >> /home/acidvegas/.weechat/renew
 chmod +x /home/acidvegas/.weechat/renew
@@ -157,7 +157,7 @@ chmod +x /home/acidvegas/.weechat/renew
 ```
 /server add 2f30		irc.2f30.org/6697 -ssl
 /server add blackhat	breaking.technology/6697 -ssl
-/server add efnet		irc.choopa.net/6697 -ssl
+/server add efnet		irc.servercentral.net/999 -ssl
 /server add freenode	irc.freenode.com/6697 -ssl
 /server add ircstorm	irc.ircstorm.net/6699 -ssl
 /server add oftc		irc.oftc.net/6697 -ssl
@@ -168,14 +168,15 @@ chmod +x /home/acidvegas/.weechat/renew
 /server add wormnet		wormnet1.team17.com
 /server add wtfux		irc.wtfux.org/6697 -ssl
 
-/set irc.server.2f30.autojoin		#2f30
-/set irc.server.efnet.autojoin		#2600,#efnetnews,#exchange,#irc30,#lrh
-/set irc.server.freenode.autojoin	#archlinux,#ircv3,#music-theory,#python,#raspberrypi,#weechat
-/set irc.server.sandnet.autojoin	#arab
-/set irc.server.silph.autojoin		#ramen
-/set irc.server.wormnet.autojoin	#anythinggoes
-/set irc.server.wormnet.password	ELSILRACLIHP
-/set irc.server.wormnet.realname	"48 0 US 3.7.2.1"
+/set irc.server.2f30.autojoin			#2f30
+/set irc.server.efnet.autojoin			#2600,#efnetnews,#exchange,#irc30,#lrh
+/set irc.server.efnet.ssl_dhkey_size	1024
+/set irc.server.freenode.autojoin		#archlinux,#ircv3,#music-theory,#python,#raspberrypi,#weechat
+/set irc.server.sandnet.autojoin		#arab
+/set irc.server.silph.autojoin			#ramen
+/set irc.server.wormnet.autojoin		#anythinggoes
+/set irc.server.wormnet.password		ELSILRACLIHP
+/set irc.server.wormnet.realname		"48 0 US 3.7.2.1"
 ```
 
 ### Services
