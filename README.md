@@ -11,6 +11,7 @@
 - [Services](#services)
 - [Proxy](#proxy)
 - [Relay](#relay)
+- [Keys](#keys)
 
 ### Setup
 ###### WeeChat
@@ -219,3 +220,60 @@ chmod +x /home/acidvegas/.weechat/renew
 /relay sslcertkey
 /relay add ssl.weechat PORT
 ```
+
+### Keys
+| Keys    | Description                           | Command                           |
+| ------- | ------------------------------------- | --------------------------------- |
+| ALT + n | Scroll to next highlight              | /window scroll_next_highlight     |
+| ALT + p | Scroll to previous highlight          | /window scroll_previous_highlight |
+| ALT + u | Scroll to first unread line in buffer | /window scroll_unread             |
+
+| Keys      | Description              | Command                     |
+| --------- | ------------------------ | --------------------------- |
+| Left      | Move cursor to the left  | /input move_previous_char   |
+| Right     | Move cursor to the right | /input move_next_char       |
+| Backspace | Delete character         | /input delete_previous_char |
+| Enter     | Send                     | /input return               |
+
+| Keys      | Description         | Command                 |
+| --------- | ------------------- | ----------------------- |
+| CTRL + r  | Search text         | /input search_text_here |
+| CTRL + y  | Paste               | /input clipboard_paste  |
+| CTRL + l  | Refresh window      | /window refresh         |
+| ALT  + l  | Toggle bare display | /window bare            |
+
+| Keys      | Description         | Command                  |
+| --------- | ------------------- | ------------------------ |
+| Tab       | Complete next       | /input complete_next     |
+| Shift+Tab | Complete previous   | /input complete_previous |
+
+| Keys        | Description                        | Command                        |
+| ----------- | ---------------------------------- | ------------------------------ |
+| Up          | Show previous input history        | /input history_previous        |
+| Down        | Show next input history            | /input history_next            |
+| CTRL + Up   | Show previous global input history | /input history_global_previous |
+| CTRL + Down | Show next global input history     | /input history_global_next     |
+
+| Keys       | Description           | Command    |
+| ---------- | --------------------- | ---------- |
+| ALT + #    | Go to Nth buffer      | /buffer *N |
+| ALT + Up   | Go to previous buffer | /buffer -1 |
+| ALT + Down | Go to next buffer     | /buffer +1 |
+
+| Keys       | Description                               | Command               |
+| ---------- | ----------------------------------------- | --------------------- |
+| PgUp       | Scroll up one page in buffer history      | /window page_up       |
+| PgDn       | Scroll down one page in buffer history    | /window page_down     |
+| ALT + PgUp | Scroll up a few lines in buffer history   | /window scroll_up     |
+| ALT + PgDn | Scroll down a few lines in buffer history | /window scroll_down   |
+| ALT + Home | Scroll to top of buffer                   | /window scroll_top    |
+| ALT + End  | Scroll to bottom of buffer                | /window scroll_bottom |
+
+| Keys        | Description                     | Command            |
+| ----------- | ------------------------------- | ------------------ |
+| Ctrl + c, b | Insert code for bold text       | /input insert \x02 |
+| Ctrl + c, c | Insert code for colored text    | /input insert \x03 |
+| Ctrl + c, i | Insert code for italic text     | /input insert \x1D |
+| Ctrl + c, o | Insert code for color reset     | /input insert \x0F |
+| Ctrl + c, v | Insert code for reverse color   | /input insert \x16 |
+| Ctrl + c, _ | Insert code for underlined text | /input insert \x1F |
