@@ -13,6 +13,8 @@
 - [Relay](#relay)
 - [Keys](#keys)
 
+---
+
 ### Setup
 ###### WeeChat
 ```
@@ -39,6 +41,8 @@ echo "chown -R acidvegas:acidvegas /home/acidvegas/.weechat/ssl/relay.pem && chm
 echo "printf '%b' '*/relay sslcertkey\n' > /home/acidvegas/.weechat/weechat_fifo" >> /home/acidvegas/.weechat/renew
 chmod +x /home/acidvegas/.weechat/renew
 ```
+
+---
 
 ### Settings
 ```
@@ -147,12 +151,16 @@ chmod +x /home/acidvegas/.weechat/renew
 /set weechat.startup.display_version			off
 ```
 
+---
+
 ### Triggers
 ```
 /trigger add hate					modifier	irc_out1_PRIVMSG			"" "/hate/04 HATE "
 /trigger add input_command_color	modifier	"500|input_text_display"	"${tg_string} =~ ^/($|[^/])" "#/(.+)#${color:39}/${color:74}${re:1}#"
 /trigger add url_color				modifier	"weechat_print"				"${tg_tags} !~ irc_quit" ";[a-z]+://\S+;${color:32}${color:underline}${re:0}${color:-underline}${color:reset};" ""
 ```
+
+---
 
 ### Servers
 ```
@@ -180,6 +188,8 @@ chmod +x /home/acidvegas/.weechat/renew
 /set irc.server.wormnet.realname		"48 0 US 3.7.2.1"
 ```
 
+---
+
 ### Services
 ```
 /secure passphrase CHANGEME
@@ -204,11 +214,15 @@ chmod +x /home/acidvegas/.weechat/renew
 /msg HostServ ON
 ```
 
+---
+
 ### Proxy
 ```
 /proxy add tor socks5 127.0.0.1 9050
 /set irc.server.CHANGEME.proxy tor
 ```
+
+---
 
 ### Relay
 ```
@@ -220,6 +234,8 @@ chmod +x /home/acidvegas/.weechat/renew
 /relay sslcertkey
 /relay add ssl.weechat PORT
 ```
+
+---
 
 ### Keys
 | Keys    | Description                           | Command                           |
