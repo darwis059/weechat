@@ -46,8 +46,6 @@ chmod +x /home/acidvegas/.weechat/renew
 
 ### Settings
 ```
-/key bind meta-c /bar toggle buflist
-/key bind meta-n /bar toggle nicklist
 /set buflist.format.buffer						"${if:${type}==server?${if:${window[gui_current_window].buffer.local_variables.server}==${buffer.local_variables.server}?${if:${irc_server.is_connected}?${color:green,235}:${color:lightred,235}}• ${color:default,235}${name}:${if:${irc_server.is_connected}?${color:green,235}:${color:lightred,235}}• ${color:default,235}${indent}${name}}:}${if:${type}=~(channel|private)?${color_hotlist}${indent}${name}:}${if:${type}!~(channel|private|server)?${color:gray}${name}:}"
 /set buflist.format.buffer_current				"${if:${type}==server?${if:${window[gui_current_window].buffer.local_variables.server}==${buffer.local_variables.server}?${color:lightred}${if:${irc_server.is_connected}?${color:green,235}:${color:lightred,235}}• ${name}${format_hotlist}:${color:237}${if:${irc_server.is_connected}?${color:green,235}:${color:lightred,235}}• ${name}}${format_lag}${format_hotlist}:${if:${type}=~(channel|private)?• ${name}:${if:${type}!~(channel|private|server)?${color:lightblue}${name}:}}}"
 /set buflist.format.hotlist_highlight			"${color:yellow}"
@@ -251,12 +249,14 @@ chmod +x /home/acidvegas/.weechat/renew
 | Backspace | Delete character         | /input delete_previous_char |
 | Enter     | Send                     | /input return               |
 
-| Keys      | Description         | Command                 |
-| --------- | ------------------- | ----------------------- |
-| CTRL + r  | Search text         | /input search_text_here |
-| CTRL + y  | Paste               | /input clipboard_paste  |
-| CTRL + l  | Refresh window      | /window refresh         |
-| ALT  + l  | Toggle bare display | /window bare            |
+| Keys             | Description         | Command                 |
+| ---------------- | ------------------- | ----------------------- |
+| CTRL + r         | Search text         | /input search_text_here |
+| CTRL + y         | Paste               | /input clipboard_paste  |
+| CTRL + l         | Refresh window      | /window refresh         |
+| ALT  + l         | Toggle bare display | /window bare            |
+| Alt  + Shift + b | Toggle buffer list  | /bar toggle buflist     |
+| Alt  + Shift + n | Toggle nicklist     | /bar toggle buflist     |
 
 | Keys      | Description         | Command                  |
 | --------- | ------------------- | ------------------------ |
