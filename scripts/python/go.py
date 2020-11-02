@@ -1,4 +1,95 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (C) 2009-2014 Sébastien Helleu <flashcode@flashtux.org>
+# Copyright (C) 2010 m4v <lambdae2@gmail.com>
+# Copyright (C) 2011 stfn <stfnmd@googlemail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+#
+# History:
+#
+# 2019-07-11, Simmo Saan <simmo.saan@gmail.com>
+#     version 2.6: fix detection of "/input search_text_here"
+# 2017-04-01, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 2.5: add option "buffer_number"
+# 2017-03-02, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 2.4: fix syntax and indentation error
+# 2017-02-25, Simmo Saan <simmo.saan@gmail.com>
+#     version 2.3: fix fuzzy search breaking buffer number search display
+# 2016-01-28, ylambda <ylambda@koalabeast.com>
+#     version 2.2: add option "fuzzy_search"
+# 2015-11-12, nils_2 <weechatter@arcor.de>
+#     version 2.1: fix problem with buffer short_name "weechat", using option
+#                  "use_core_instead_weechat", see:
+#                  https://github.com/weechat/weechat/issues/574
+# 2014-05-12, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 2.0: add help on options, replace option "sort_by_activity" by
+#                  "sort" (add sort by name and first match at beginning of
+#                  name and by number), PEP8 compliance
+# 2012-11-26, Nei <anti.teamidiot.de>
+#     version 1.9: add auto_jump option to automatically go to buffer when it
+#                  is uniquely selected
+# 2012-09-17, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 1.8: fix jump to non-active merged buffers (jump with buffer name
+#                  instead of number)
+# 2012-01-03 nils_2 <weechatter@arcor.de>
+#     version 1.7: add option "use_core_instead_weechat"
+# 2012-01-03, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 1.6: make script compatible with Python 3.x
+# 2011-08-24, stfn <stfnmd@googlemail.com>:
+#     version 1.5: /go with name argument jumps directly to buffer
+#                  Remember cursor position in buffer input
+# 2011-05-31, Elián Hanisch <lambdae2@gmail.com>:
+#     version 1.4: Sort list of buffers by activity.
+# 2011-04-25, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 1.3: add info "go_running" (used by script input_lock.rb)
+# 2010-11-01, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 1.2: use high priority for hooks to prevent conflict with other
+#                  plugins/scripts (WeeChat >= 0.3.4 only)
+# 2010-03-25, Elián Hanisch <lambdae2@gmail.com>:
+#     version 1.1: use a space to match the end of a string
+# 2009-11-16, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 1.0: add new option to display short names
+# 2009-06-15, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.9: fix typo in /help go with command /key
+# 2009-05-16, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.8: search buffer by number, fix bug when window is split
+# 2009-05-03, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.7: eat tab key (do not complete input, just move buffer
+#                  pointer)
+# 2009-05-02, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.6: sync with last API changes
+# 2009-03-22, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.5: update modifier signal name for input text display,
+#                  fix arguments for function string_remove_color
+# 2009-02-18, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.4: do not hook command and init options if register failed
+# 2009-02-08, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.3: case insensitive search for buffers names
+# 2009-02-08, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.2: add help about Tab key
+# 2009-02-08, Sébastien Helleu <flashcode@flashtux.org>:
+#     version 0.1: initial release
+#
+
+"""
+Quick jump to buffers.
+(this script requires WeeChat 0.3.0 or newer)
+"""
+
 from __future__ import print_function
 
 SCRIPT_NAME = 'go'
@@ -88,13 +179,16 @@ old_input = None
 buffers = []
 buffers_pos = 0
 
+
 def go_option_enabled(option):
     """Checks if a boolean script option is enabled or not."""
     return weechat.config_string_to_boolean(weechat.config_get_plugin(option))
 
+
 def go_info_running(data, info_name, arguments):
     """Returns "1" if go is running, otherwise "0"."""
     return '1' if 'modifier' in hooks else '0'
+
 
 def go_unhook_one(hook):
     """Unhook something hooked by this script."""
@@ -103,11 +197,13 @@ def go_unhook_one(hook):
         weechat.unhook(hooks[hook])
         del hooks[hook]
 
+
 def go_unhook_all():
     """Unhook all."""
     go_unhook_one('modifier')
     for hook in HOOK_COMMAND_RUN:
         go_unhook_one(hook)
+
 
 def go_hook_all():
     """Hook command_run and modifier."""
@@ -127,6 +223,7 @@ def go_hook_all():
         hooks['modifier'] = weechat.hook_modifier(
             'input_text_display_with_cursor', 'go_input_modifier', '')
 
+
 def go_start(buf):
     """Start go on buffer."""
     global saved_input, saved_input_pos, old_input, buffers_pos
@@ -137,6 +234,7 @@ def go_start(buf):
     old_input = None
     buffers_pos = 0
 
+
 def go_end(buf):
     """End go on buffer."""
     global saved_input, saved_input_pos, old_input
@@ -144,6 +242,7 @@ def go_end(buf):
     weechat.buffer_set(buf, 'input', saved_input)
     weechat.buffer_set(buf, 'input_pos', str(saved_input_pos))
     old_input = None
+
 
 def go_match_beginning(buf, string):
     """Check if a string matches the beginning of buffer name/short name."""
@@ -155,16 +254,20 @@ def go_match_beginning(buf, string):
         return True
     return False
 
+
 def go_match_fuzzy(name, string):
     """Check if string matches name using approximation."""
     if not string:
         return False
+
     name_len = len(name)
     string_len = len(string)
+
     if string_len > name_len:
         return False
     if name_len == string_len:
         return name == string
+
     # Attempt to match all chars somewhere in name
     prev_index = -1
     for i, char in enumerate(string):
@@ -454,6 +557,7 @@ def go_main():
                       'Return "1" if go is running, otherwise "0"',
                       '',
                       'go_info_running', '')
+
 
 if __name__ == "__main__" and IMPORT_OK:
     go_main()
