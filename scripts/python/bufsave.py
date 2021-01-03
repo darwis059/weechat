@@ -32,4 +32,4 @@ def bufsave_cmd(data, buffer, args):
 	return weechat.WEECHAT_RC_OK
 
 if weechat.register('bufsave', 'acidvegas', '1.0', 'ISC', 'save buffer to file', '', ''):
-	weechat.hook_command('bufsave', 'save current buffer to a file', '[filename]', '  filename: target file (must not exist)\n', '%f', 'bufsave_cmd', '')
+	weechat.hook_command('bufsave', 'save current buffer to a file', '[filename]', 'filename: target file (must not exist)\n', '%f', 'bufsave_cmd', '')

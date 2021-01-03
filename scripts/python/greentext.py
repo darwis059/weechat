@@ -3,11 +3,11 @@
 import re,weechat
 
 def between(source, start, stop):
-    data = re.compile(start + '(.*?)' + stop, re.IGNORECASE|re.MULTILINE).search(source)
-    if data:
-        return data.group(1)
-    else:
-        return False
+	data = re.compile(start + '(.*?)' + stop, re.IGNORECASE|re.MULTILINE).search(source)
+	if data:
+		return data.group(1)
+	else:
+		return False
 
 def cb_greentext(data,buffer,command):
 	if command=='/input return':
@@ -23,4 +23,5 @@ def cb_greentext(data,buffer,command):
 						data = data.replace(word, '\x1F\x02' + word[2:].upper() + '\x0f', 1)
 		weechat.buffer_set(buffer,'input',data)
 	return weechat.WEECHAT_RC_OK
+
 if weechat.register('greentext','','','','','',''):weechat.hook_command_run('/input return','cb_greentext','')

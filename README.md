@@ -242,12 +242,13 @@ chmod +x /home/acidvegas/.weechat/renew
 | ALT + p | Scroll to previous highlight          | /window scroll_previous_highlight |
 | ALT + u | Scroll to first unread line in buffer | /window scroll_unread             |
 
-| Keys      | Description              | Command                     |
-| --------- | ------------------------ | --------------------------- |
-| Left      | Move cursor to the left  | /input move_previous_char   |
-| Right     | Move cursor to the right | /input move_next_char       |
-| Backspace | Delete character         | /input delete_previous_char |
-| Enter     | Send                     | /input return               |
+| Keys        | Description              | Command                     |
+| ----------- | ------------------------ | --------------------------- |
+| Left        | Move cursor to the left  | /input move_previous_char   |
+| Right       | Move cursor to the right | /input move_next_char       |
+| Backspace   | Delete character         | /input delete_previous_char |
+| Enter       | Send                     | /input return               |
+| ALT + Enter | Insert new line          | /input insert \n            |
 
 | Keys             | Description         | Command                 |
 | ---------------- | ------------------- | ----------------------- |
@@ -285,11 +286,11 @@ chmod +x /home/acidvegas/.weechat/renew
 | ALT + Home | Scroll to top of buffer                   | /window scroll_top    |
 | ALT + End  | Scroll to bottom of buffer                | /window scroll_bottom |
 
-| Keys        | Description                     | Command            |
-| ----------- | ------------------------------- | ------------------ |
-| Ctrl + c, b | Insert code for bold text       | /input insert \x02 |
-| Ctrl + c, c | Insert code for colored text    | /input insert \x03 |
-| Ctrl + c, i | Insert code for italic text     | /input insert \x1D |
-| Ctrl + c, o | Insert code for color reset     | /input insert \x0F |
-| Ctrl + c, v | Insert code for reverse color   | /input insert \x16 |
-| Ctrl + c, _ | Insert code for underlined text | /input insert \x1F |
+| Keys         | Description                     | Command            |
+| ------------ | ------------------------------- | ------------------ |
+| Ctrl + c, b  | Insert code for bold text       | /input insert \x02 |
+| Ctrl + c, c  | Insert code for colored text    | /input insert \x03 |
+| Ctrl + c, i  | Insert code for italic text     | /input insert \x1D |
+| Ctrl + c, o  | Insert code for color reset     | /input insert \x0F |
+| Ctrl + c, v  | Insert code for reverse color   | /input insert \x16 |
+| Ctrl + c, _  | Insert code for underlined text | /input insert \x1F |
